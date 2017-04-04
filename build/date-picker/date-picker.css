@@ -1,0 +1,77 @@
+.date-picker-wrapper {
+  position: relative; }
+  .date-picker-wrapper input {
+    padding: 5px;
+    border: 1px solid #cac3c3;
+    border-radius: 2px; }
+  .date-picker-wrapper .selected-date {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #decdcd;
+    background: #fbf9f9; }
+
+.calendar-panel {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 268px;
+  background: white;
+  z-index: 999;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12); }
+  .calendar-panel button {
+    background: #20acb3;
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+    font-weight: bold;
+    color: white; }
+  .calendar-panel .time-picker {
+    padding: 10px 0;
+    border-bottom: 1px solid #decdcd; }
+    .calendar-panel .time-picker .hours,
+    .calendar-panel .time-picker .minutes {
+      width: 50%;
+      display: inline-block;
+      text-align: center; }
+      .calendar-panel .time-picker .hours div,
+      .calendar-panel .time-picker .minutes div {
+        font-size: 13px;
+        margin-bottom: 4px; }
+      .calendar-panel .time-picker .hours button,
+      .calendar-panel .time-picker .minutes button {
+        margin: 0 2px;
+        width: 24px;
+        font-size: 15px;
+        padding: 3px; }
+  .calendar-panel .month {
+    padding: 10px; }
+  .calendar-panel .prev-month,
+  .calendar-panel .next-month {
+    display: inline-block;
+    width: 10%; }
+  .calendar-panel .next-month {
+    text-align: right; }
+  .calendar-panel .calendar-head {
+    display: inline-block;
+    width: 80%;
+    text-align: center; }
+
+.calendar-board {
+  padding: 10px; }
+  .calendar-board table, .calendar-board td {
+    border: 1px solid #d0c6c6;
+    border-collapse: collapse;
+    text-align: center; }
+  .calendar-board table {
+    width: 100%; }
+  .calendar-board td.current {
+    background: #4ce642;
+    color: white; }
+  .calendar-board td.selected {
+    background: #5994ff;
+    color: white; }
+
+.calendar-buttons {
+  padding: 10px; }
+  .calendar-buttons .apply-button {
+    float: right; }

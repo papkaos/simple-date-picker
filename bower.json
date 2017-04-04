@@ -1,0 +1,21 @@
+{
+  "name": "test-datepicker",
+  "description": "simple datepicker",
+  "main": "index.js",
+  "authors": [
+    "Oleksandr Papka"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "v1.5.10",
+    "moment": "^2.18.1"
+  }
+}

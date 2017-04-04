@@ -1,0 +1,115 @@
+.date-picker-wrapper {
+  position: relative;
+
+  input {
+    padding: 5px;
+    border: 1px solid #cac3c3;
+    border-radius: 2px;
+  }
+
+  .selected-date {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #decdcd;
+    background: #fbf9f9;
+
+  }
+
+}
+
+.calendar-panel {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 268px;
+  background: white;
+  z-index: 999;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+
+  button {
+    background: #20acb3;
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .time-picker {
+    padding: 10px 0;
+    border-bottom: 1px solid #decdcd;
+
+    .hours,
+    .minutes {
+      width: 50%;
+      display: inline-block;
+      text-align: center;
+
+      div {
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      button {
+        margin: 0 2px;
+        width: 24px;
+        font-size: 15px;
+        padding: 3px;
+      }
+    }
+  }
+
+  .month {
+    padding: 10px;
+  }
+
+  .prev-month,
+  .next-month {
+    display: inline-block;
+    width: 10%;
+  }
+
+  .next-month {
+    text-align: right;
+  }
+
+  .calendar-head {
+    display: inline-block;
+    width: 80%;
+    text-align: center;
+  }
+
+}
+
+.calendar-board {
+  padding: 10px;
+
+  table, td {
+    border: 1px solid #d0c6c6;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td.current {
+    background: #4ce642;
+    color: white;
+  }
+
+  td.selected {
+    background: #5994ff;
+    color: white;
+  }
+
+}
+
+.calendar-buttons {
+  padding: 10px;
+
+  .apply-button {
+    float: right;
+  }
+}

@@ -1,0 +1,41 @@
+//
+   Created by Александр on 03.04.2017.
+
+div.date-picker-wrapper
+    input(type='text',
+    ng-focus='datePickerCtrl.showCalendar()',
+    ng-model='datePickerCtrl.selectedDateAndTime'
+    class='main-date-field')
+
+    div.calendar-panel(ng-if='datePickerCtrl.shouldShowCalendar')
+        div.selected-date
+            input(type='text', ng-model='datePickerCtrl.temporarySelected')
+        div.time-picker
+            div.hours
+                div hours:
+                button.hours-prev(ng-click='datePickerCtrl.changeTime(-1, "hours")') -
+                button.hours-next(ng-click='datePickerCtrl.changeTime(1, "hours")') +
+            div.minutes
+                div minutes:
+                button.min-prev(ng-click='datePickerCtrl.changeTime(-1, "minutes")') -
+                button.min-next(ng-click='datePickerCtrl.changeTime(1, "minutes")') +
+        div.month
+            div.prev-month
+                button(ng-click='datePickerCtrl.getMonth("prev")') <
+            div.calendar-head
+                span {{ datePickerCtrl.selectedMonth.format('MMMM YYYY') }}
+            div.next-month
+                button(ng-click='datePickerCtrl.getMonth("next")') >
+
+        div.calendar-board
+            table
+                tr
+                    th(ng-repeat='dayOfWeek in datePickerCtrl.daysOfWeek') {{ dayOfWeek.name }}
+                tr(ng-repeat='week in datePickerCtrl.weeks')
+                    td(ng-repeat='day in week'
+                    ng-click='datePickerCtrl.setDate(day)',
+                    ng-class="{ 'current': datePickerCtrl.isToday(day), 'selected': datePickerCtrl.isSelected(day) }" ) {{ day.format('D') }}
+
+        div.calendar-buttons
+            button(ng-click='datePickerCtrl.hideCalendar()', class='cancel-button') Cancel
+            button(ng-click='datePickerCtrl.setAndApplyDate();datePickerCtrl.hideCalendar()', class='apply-button') Apply
