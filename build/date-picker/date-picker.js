@@ -30,6 +30,7 @@
         vm.selectedMonth = moment(vm.selectedDateAndTime).clone();
 
         vm.temporarySelected = moment(vm.selectedDateAndTime).clone().format("YYYY-MM-DD, HH:mm");
+        // vm.temporarySelectedTime = moment(vm.selectedDateAndTime).clone().format("YYYY-MM-DD, HH:mm");
 
         vm.changeTime = function (dir, measure) {
 
