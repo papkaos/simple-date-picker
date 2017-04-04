@@ -64,6 +64,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+.idea
 node_modules/
-
 app/bower_components/
+build/bower_components/
+build/libs/
