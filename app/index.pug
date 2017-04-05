@@ -9,11 +9,13 @@ html(lang="en", ng-app="app")
         link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic")
         link(rel="stylesheet", href="date-picker/date-picker.css")
         link(rel="stylesheet", href="app.css")
-    body
+    body(ng-controller="AppController as appCtrl")
         div.container-wrapper
             h1 Simple Date Picker AngularJS
-            //input(type="text")
-            date-picker-input
+            date-picker-input(model-date='appCtrl.modelDate')
+            div.users-date
+                p Selected date: {{ appCtrl.modelDate | json }}
+
 
         script(src="libs/moment/moment.js")
         script(src="libs/angular/angular.js")

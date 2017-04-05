@@ -4,6 +4,13 @@
 ;(function () {
     'use strict';
 
-    angular.module('app', ['datePicker']);
+    angular.module('app', ['datePicker'])
+        .controller('AppController', AppController);
+
+    function AppController() {
+        var vm = this;
+
+        vm.modelDate = moment().format("YYYY-MM-DD, HH:mm");
+    }
 
 })();

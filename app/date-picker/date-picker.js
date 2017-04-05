@@ -11,33 +11,27 @@
     function datePickerInput() {
         return {
             templateUrl: 'date-picker/date-picker.html',
+            scope: {
+                modelDate: '='
+            },
             replace: true,
             controller: 'DatePickerCtrl',
             controllerAs: 'datePickerCtrl'
         }
     }
 
-    DatePickerCtrl.$inject = ['datePickerService'];
+    DatePickerCtrl.$inject = ['datePickerService', '$scope'];
 
-    function DatePickerCtrl(datePickerService) {
+    function DatePickerCtrl(datePickerService, $scope) {
         var vm = this;
 
-        // vm.now = datePickerService.getNow();
         vm.todayDateAndTime = datePickerService.getTodayDateAndTime();
         vm.currentMonth = datePickerService.getCurrentMonth();
 
-        vm.selectedDateAndTime = vm.todayDateAndTime;
+        vm.selectedDateAndTime = checkUserDate($scope.modelDate) || vm.todayDateAndTime;
         vm.selectedMonth = moment(vm.selectedDateAndTime).clone();
 
         vm.temporarySelected = moment(vm.selectedDateAndTime).clone().format("YYYY-MM-DD, HH:mm");
-        // vm.temporarySelectedTime = moment(vm.selectedDateAndTime).clone().format("YYYY-MM-DD, HH:mm");
-
-        vm.changeTime = function (dir, measure) {
-
-            vm.temporarySelected = moment(vm.temporarySelected).add(dir, measure).format("YYYY-MM-DD, HH:mm");
-
-            // vm.temporarySelectedTime = time;
-        };
 
         vm.daysOfWeek = datePickerService.getDaysOfWeek();
 
@@ -54,11 +48,10 @@
         vm.isToday = isToday;
         vm.isSelected = isSelected;
         vm.setAndApplyDate = setAndApplyDate;
+        vm.changeTime = changeTime;
 
         function getMonth(dir) {
-
             var shift = dir === 'prev' ? -1 : 1;
-
             var currentMonth = moment(vm.selectedMonth);
 
             currentMonth.add(shift, 'months');
@@ -76,12 +69,17 @@
         }
 
 
-        function isToday(date) {
+        function changeTime(dir, measure) {
+            vm.temporarySelected = moment(vm.temporarySelected).add(dir, measure).format("YYYY-MM-DD, HH:mm");
+        }
 
+
+        function isToday(date) {
             if (checkEmptyDate(date)) return;
 
             return date.isSame(moment(), 'day');
         }
+
 
         function isSelected(date) {
             if (checkEmptyDate(date)) return;
@@ -91,16 +89,28 @@
 
 
         function setAndApplyDate() {
-
             if (!moment(vm.temporarySelected).isValid()) return;
 
             vm.selectedDateAndTime = vm.temporarySelected;
+            $scope.modelDate = vm.temporarySelected;
+        }
+
+
+        function checkUserDate(date) {
+            if (!date) return;
+
+            var userDate = moment(date);
+
+            if (!userDate.isValid()) return;
+
+            return userDate.format("YYYY-MM-DD, HH:mm");
         }
 
 
         function showCalendar() {
             vm.shouldShowCalendar = true;
         }
+
 
         function hideCalendar() {
             vm.shouldShowCalendar = false;
@@ -110,11 +120,11 @@
             vm.selectedMonth = moment(vm.selectedDateAndTime).clone();
         }
 
+
         function checkEmptyDate(date) {
             return Object.keys(date).length < 2;
         }
 
     }
-
 
 })();
