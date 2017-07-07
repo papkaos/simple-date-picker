@@ -6,3 +6,5 @@
 3. Установка front-end зависимостей `bower install`
 4. Собрать проект `gulp build`
 5. Запуск локального сервера `npm start`. После чего перейти по адресу "http://127.0.0.1:3000"
+
+В coffeetry ветке версия на coffeescript
