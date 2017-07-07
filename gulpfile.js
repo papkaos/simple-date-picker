@@ -1,6 +1,3 @@
-/**
- * Created by Александр on 03.04.2017.
- */
 var gulp = require('gulp'),
     pug = require('gulp-pug'),
     del = require('del'),
@@ -11,8 +8,8 @@ var gulp = require('gulp'),
 var paths = {
     html: ['./app/**/*.pug', '!./bower_components/**/*'],
     scss: ['./app/**/*.scss', '!./bower_components/**/*'],
-    // scripts: ['./app/**/*.coffee', '!./bower_components/**/*']
-    scripts: ['./app/**/*.js', '!./bower_components/**/*']
+    scripts: ['./app/**/*.coffee', '!./bower_components/**/*']
+    // scripts: ['./app/**/*.js', '!./bower_components/**/*']
 };
 
 gulp.task('clean', function() {
@@ -33,7 +30,7 @@ gulp.task('sass', function () {
 
 gulp.task('scripts', function() {
     return gulp.src(paths.scripts)
-        // .pipe(coffee())
+        .pipe(coffee())
         .pipe(gulp.dest('build'));
 });
 

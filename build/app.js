@@ -1,16 +1,17 @@
-/**
- * Created by Александр on 03.04.2017.
- */
-;(function () {
-    'use strict';
+(function() {
+  var AppController, dependencies;
 
-    angular.module('app', ['datePicker'])
-        .controller('AppController', AppController);
+  angular.module('app', ['datePicker']);
 
-    function AppController() {
-        var vm = this;
+  dependencies = [];
 
-        vm.modelDate = moment().format("YYYY-MM-DD, HH:mm");
-    }
+  AppController = function() {
+    var vm;
+    vm = this;
+    vm.modelDate = moment().format('YYYY-MM-DD, HH:mm');
+    return vm;
+  };
 
-})();
+  angular.module('app').controller('AppController', dependencies.concat(AppController));
+
+}).call(this);
