@@ -4,7 +4,7 @@
   dependencies = [];
 
   datePickerService = function() {
-    var currentMonth, daysOfWeek, getCurrentMonth, getDaysInMonth, getDaysOfWeek, getFullMonth, getNow, getTodayDateAndTime, now, svc, todayDateAndTime;
+    var currentMonth, daysOfWeek, now, svc, todayDateAndTime;
     svc = this;
     now = moment();
     todayDateAndTime = now.format('YYYY-MM-DD, HH:mm');
@@ -40,42 +40,56 @@
         name: 'Su'
       }
     ];
-    getNow = function() {
+    svc.getNow = function() {
       return now;
     };
-    getTodayDateAndTime = function() {
+    svc.getTodayDateAndTime = function() {
       return todayDateAndTime;
     };
-    getCurrentMonth = function() {
+    svc.getCurrentMonth = function() {
       return currentMonth;
     };
-    getDaysOfWeek = function() {
+    svc.getDaysOfWeek = function() {
       return daysOfWeek;
     };
-    getDaysInMonth = function(date) {
-      var copyDate, dayInMonth, daysInMonth, firstDayMonth, i, j, objTemp, ref, results;
+    svc.getDaysInMonth = function(date) {
+      var copyDate, dayInMonth, daysInMonth, firstDayMonth, i, j, objTemp, ref;
       copyDate = moment(date);
       firstDayMonth = copyDate.clone().startOf('month').hour(12);
       daysInMonth = [];
       dayInMonth = angular.copy(firstDayMonth);
-      results = [];
       for (i = j = 1, ref = copyDate.daysInMonth(); 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
         daysInMonth.push(dayInMonth);
         objTemp = angular.copy(dayInMonth);
         dayInMonth = objTemp.add(1, 'day');
-        results.push(daysInMonth);
       }
-      return results;
+      return daysInMonth;
     };
-    return getFullMonth = function(date) {
-      var daysInMonth, firstDay, week, weeksArray;
-      daysInMonth = getDaysInMonth(date);
+    svc.getFullMonth = function(date) {
+      var daysInMonth, elem, firstDay, j, len, week, weeksArray;
+      daysInMonth = svc.getDaysInMonth(date);
       firstDay = daysInMonth[0].isoWeekday();
       weeksArray = [];
-      return week = [];
+      week = [];
+      while (--firstDay) {
+        week.push({});
+      }
+      for (j = 0, len = daysInMonth.length; j < len; j++) {
+        elem = daysInMonth[j];
+        if ((week.length + 1) % 7 !== 0) {
+          week.push(elem);
+        } else {
+          week.push(elem);
+          weeksArray.push(week);
+          week = [];
+        }
+      }
+      weeksArray.push(week);
+      return weeksArray;
     };
+    return svc;
   };
 
-  angular.module('datePicker');
+  angular.module('datePicker').service('datePickerService', dependencies.concat(datePickerService));
 
 }).call(this);
